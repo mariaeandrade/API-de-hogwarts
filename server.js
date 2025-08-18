@@ -19,28 +19,47 @@ app.get("/bruxo/:id", (req, res) => {
   const bruxo = bruxos.find(b => b.id === id);
 
   if (bruxo)  {
-    res.json({
-      sucess: true,
-      message: `Bruxo ${bruxo.nome} encontrado!`,
-      data: bruxo
-    });
-  } else {
+
+  res.status(200).json(bruxo);
+    } else {
     res.status(404).json({
-      sucess: false,
-      error: `Bruxo não encontrado`,
       message: `Nenhum bruxo com ID ${id} encontrado.`
     });
   }
 });
 
+app.get("/bruxos/casa/:casa", (req, res) => {
 
-app.get("/bruxos", (req, res) => {
-  res.json ({
-    sucess: true,
-    message: "Todos os bruxos em Hogwarts",
-    data: bruxo,
-    total: bruxos.length
-  })
+  let casa = req.params.casa;
+  
+  const bruxosDaCasa = bruxos.filter(b => b.casa.toLowerCase() === casa.toLowerCase());
+
+  if (bruxosDaCasa.length > 0) {
+    res.status(200).json(bruxosDaCasa);
+
+  } else {
+
+    res.status(404).json({
+      mensagem: "Nenhum bruxo encontrado na casa!"
+    })
+  }
+});
+
+app.get("/bruxos/nome/:nome", (req, res) => {
+
+  let nome = req.params.nome.toLowerCase();
+  
+  const bruxosChamados = bruxos.filter(b => b.nome.toLowerCase().includes(nome)
+);
+  if (bruxosChamados.length > 0) {
+
+    res.status(200).json(bruxosChamados);
+  } else {
+
+    res.status(404).json({
+      mensagem: "Nenhum bruxo encontrado na nome!"
+    })
+  }
 });
 app.listen(serverPort, () => {
     console.log(`Servidor funcionando em ${serverPort}`)
