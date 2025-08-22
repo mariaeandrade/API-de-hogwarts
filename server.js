@@ -12,7 +12,7 @@ app.get("/bruxos", (req, res) => {
     res.json(bruxos);
 });
 
-app.get("/bruxo/:id", (req, res) => {
+app.get("/bruxo/id/:id", (req, res) => {
 
   let id = parseInt(req.params.id);
 
@@ -45,7 +45,7 @@ app.get("/bruxos/casa/:casa", (req, res) => {
   }
 });
 
-app.get("/bruxos/nome/:nome", (req, res) => {
+app.get("/bruxo/nome/:nome", (req, res) => {
 
   let nome = req.params.nome.toLowerCase();
   
@@ -57,10 +57,18 @@ app.get("/bruxos/nome/:nome", (req, res) => {
   } else {
 
     res.status(404).json({
-      mensagem: "Nenhum bruxo encontrado na nome!"
+      mensagem: "Nenhum bruxo encontrado com esse nome!"
     })
   }
 });
+app.get("/bruxos/vivo/nao", (req, res) => {
+  const resultado = bruxos.filter((b) => !b.status);
+  if (resultado) {
+    res.status(200).json(resultado); 
+    } else {
+      res.status(404).json({ erro: "nenhum bruxo morto encontrado"})
+    }
+  })
 app.listen(serverPort, () => {
     console.log(`Servidor funcionando em ${serverPort}`)
 });
