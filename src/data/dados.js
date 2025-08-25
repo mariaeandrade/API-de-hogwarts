@@ -38,7 +38,7 @@ const casas = [
   {
     id: 3,
     nome: "Corvinal",
-    fundador: "Towena Ravenclaw",
+    fundador: "Rowena Ravenclaw",
     cores: "Azul e Bronze",
     animal: "Águia",
   },

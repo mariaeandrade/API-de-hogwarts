@@ -54,13 +54,13 @@ app.get("/varinhas", (req, res) => {
   res.json(varinhas);
 });
 
-app.get("/varinhas/:id", (req, res) => {
+app.get("/varinhas/id/:id", (req, res) => {
   let id = parseInt(req.params.id);
 
-  const varinhas = varinhas.find((v) => v.id === id);
+  const varinhasEncontradas = varinhas.find((v) => v.id === id);
 
-  if (varinhas) {
-    res.status(200).json(varinhas);
+  if (varinhasEncontradas) {
+    res.status(200).json(varinhasEncontradas);
   } else {
     res.status(404).json({
       message: `Nenhuma varinha com ID ${id} encontrado.`,
@@ -75,10 +75,10 @@ app.get("/animais", (req, res) => {
 app.get("/animais/id/:id", (req, res) => {
   let id = parseInt(req.params.id);
 
-  const animais = animais.find((a) => a.id === id);
+  const animalEncontrado  = animais.find((a) => a.id === id);
 
-  if (animais) {
-    res.status(200).json(animais);
+  if (animalEncontrado ) {
+    res.status(200).json(animalEncontrado );
   } else {
     res.status(404).json({
       erro: `Nenhum animal encontrado com o id ${id}`,
@@ -93,10 +93,10 @@ app.get("/pocoes", (req, res) => {
 app.get("/pocoes/id/:id", (req, res) => {
   let id = parseInt(req.params.id);
 
-  const pocoes = pocoes.find((p) => p.id === id);
+  const pocaoEncontrada  = pocoes.find((p) => p.id === id);
 
-  if (pocoes) {
-    res.status(200).json(pocoes);
+  if (pocaoEncontrada ) {
+    res.status(200).json(pocaoEncontrada );
   } else {
     res.status(404).json({
       erro: `Nenhuma poção com o ID ${id} encontrada`,
@@ -111,10 +111,10 @@ app.get("/casas", (req, res) => {
 app.get("/casas/id/:id", (req, res) => {
   let id = parseInt(req.params.id);
 
-  const casas = casas.find((c) => c.id === id);
+  const casaEncontrada = casas.find((c) => c.id === id);
 
-  if (casas.length > 0) {
-    res.status(200).json(casas);
+  if (casaEncontrada) {
+    res.status(200).json(casaEncontrada);
   } else {
     res.status(404).json({
       erro: `Nenhuma casa com o id ${id} encontrada `,
